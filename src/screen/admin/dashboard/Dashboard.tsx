@@ -4,11 +4,10 @@ import Paperbase from '../../../template/Paperbase'
 
 import { setBreadCms } from './../../../store/reducer/Breadcrumbs'
 import { setTitle } from './../../../store/reducer/TitleHeader'
-import { routerPathProtected, routerPathPublic } from '../../../router/RouterPath'
+import { routerPathProtected } from '../../../router/RouterPath'
 import axios from 'axios'
 
 import { systemConfig } from '../../../config/System'
-import { useHistory } from 'react-router';
 import { useSelector , useDispatch} from 'react-redux'
 import { RootState } from './../../../store/ConfigureStore'
 
@@ -23,8 +22,6 @@ function Dashboard() {
 
 
 function Pages() {
-
-    const history = useHistory()
 
     const dispatch = useDispatch()
 

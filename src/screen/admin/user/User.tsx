@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Paperbase from '../../../template/Paperbase'
-import { AppBar, Button, Container, Grid, Toolbar, Typography } from '@mui/material'
+import { AppBar, Avatar, Button, Container, Grid, Toolbar, Typography } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { setBreadCms } from './../../../store/reducer/Breadcrumbs'
 import { setTitle } from './../../../store/reducer/TitleHeader'
@@ -26,6 +26,20 @@ function User() {
 function Pages() {
 
     const columns: GridColDef[] = [
+        {
+            field: "image_profile",
+            headerName: "รูปภาพประจำตัว",
+            sortable: false,
+            width: 130,
+            renderCell: (params) => {
+
+                const data: GSprofile = params.row
+
+                return (
+                    <Avatar alt={`${data.id}`} src={`https://scholar.googleusercontent.com/citations?view_op=view_photo&user=${data.scholar_id}`} />
+                );
+            }
+        },
         { field: 'name', headerName: 'ชื่อบนกูเกิลสกอล่า', width: 350 },
         { field: 'scholar_id', headerName: 'Code GS', width: 150 },
         { field: 'university_name', headerName: 'จากมหาวิทยาลัย', width: 100 },

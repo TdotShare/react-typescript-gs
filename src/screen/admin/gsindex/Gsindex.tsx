@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Paperbase from '../../../template/Paperbase'
-import { AppBar, Button, Container, Grid, Toolbar, Typography } from '@mui/material'
+import { AppBar, Avatar, Button, Container, Grid, Toolbar, Typography } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { setBreadCms } from './../../../store/reducer/Breadcrumbs'
 import { setTitle } from './../../../store/reducer/TitleHeader'
@@ -23,6 +23,20 @@ function Gsindex() {
 function Pages() {
 
     const columns: GridColDef[] = [
+        {
+            field: "image_profile",
+            headerName: "รูปภาพประจำตัว",
+            sortable: false,
+            width: 130,
+            renderCell: (params) => {
+
+                const data: GSindex = params.row
+
+                return (
+                    <Avatar alt={`${data.scholar_id}`} src={`https://scholar.googleusercontent.com/citations?view_op=view_photo&user=${data.scholar_id}`} />
+                );
+            }
+        },
         { field: 'fullname', headerName: 'Name Google Scholar', width: 350 },
         { field: 'scholar_id', headerName: 'Code GSR', width: 150 },
         { field: 'university_name', headerName: 'From', width: 150 },
@@ -74,7 +88,7 @@ function Pages() {
                             <Typography >{title}</Typography>
                         </Grid>
                         <Grid item>
-                            <Button disabled variant="contained" sx={{ mr: 1 }}>
+                            <Button onClick={() => { window.open(`${systemConfig.API}/export/all846215`, "_blank") }} variant="contained" sx={{ mr: 1 }}>
                                 Export Execl
                             </Button>
                         </Grid>
