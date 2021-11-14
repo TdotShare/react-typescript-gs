@@ -10,13 +10,21 @@ import axios from 'axios'
 import { systemConfig } from '../../../config/System'
 import { useSelector } from 'react-redux'
 import { RootState } from './../../../store/ConfigureStore'
-import { DataGrid, GridColDef } from '@mui/x-data-grid'
+import { DataGrid, GridColDef, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid'
 
 function Gsindex() {
 
     return (
         <Paperbase children={Pages()} />
     )
+}
+
+function CustomToolbar() {
+    return (
+        <GridToolbarContainer>
+            <GridToolbarExport />
+        </GridToolbarContainer>
+    );
 }
 
 
@@ -98,6 +106,9 @@ function Pages() {
             <Container >
                 <div style={{ padding: '2%', height: 500, width: '100%' }}>
                     <DataGrid
+                        components={{
+                            Toolbar: CustomToolbar,
+                        }}
                         rows={model ? model : []}
                         columns={columns}
                         pageSize={10}

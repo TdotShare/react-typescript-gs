@@ -22,11 +22,13 @@ function Copyright() {
   );
 }
 
+//main: '#009be5',
+
 let theme = createTheme({
   palette: {
     primary: {
       light: '#63ccff',
-      main: '#009be5',
+      main: '#9c27b0',
       dark: '#006db3',
     },
   },
@@ -130,7 +132,7 @@ theme = {
       styleOverrides: {
         root: {
           '&.Mui-selected': {
-            color: '#4fc3f7',
+            color: '#ba68c8',
           },
         },
       },
