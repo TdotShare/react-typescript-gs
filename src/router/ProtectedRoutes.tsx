@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react'
 import { useHistory, Route } from 'react-router-dom'
 
 import Dashboard from '../screen/admin/dashboard/Dashboard'
@@ -20,13 +19,9 @@ function ProtectedRoutes() {
 
     const authen = useSelector((state: RootState) => state.user.auth)
 
-    useEffect(() => {
-
-        if (!authen) {
-            history.replace(`/login`)
-        }
-    
-    })
+    if (!authen) {
+        history.replace(`/login`)
+    }
 
     return (
         <>
