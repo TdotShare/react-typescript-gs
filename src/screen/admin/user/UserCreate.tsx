@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Paperbase from '../../../template/Paperbase'
-import { AppBar, Box, Button, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Toolbar, Typography , SelectChangeEvent   } from '@mui/material'
+import { AppBar, Box, Button, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Toolbar, Typography, SelectChangeEvent } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { setBreadCms } from './../../../store/reducer/Breadcrumbs'
 import { setTitle } from './../../../store/reducer/TitleHeader'
@@ -48,9 +48,9 @@ function Pages() {
         if (data.get('scholar_id') && data.get('name') && data.get('gs_university_id')) {
             axios.post<any>(`${systemConfig.API}/gsprofile/create`,
                 {
-                    scholar_id : data.get('scholar_id') ,
-                    name : data.get('name'),
-                    gs_university_id : data.get('gs_university_id')
+                    scholar_id: data.get('scholar_id'),
+                    name: data.get('name'),
+                    gs_university_id: data.get('gs_university_id')
                 }
                 , {
                     headers: {
@@ -70,14 +70,14 @@ function Pages() {
                     swal.actionError()
                 })
 
-        }else{
+        } else {
             swal.actionInfo("กรุณากรอกข้อมูลให้ครบ")
         }
     }
 
     const handleChange = (event: SelectChangeEvent) => {
         setSelectUnivers(event.target.value as string);
-      };
+    };
 
     useEffect(() => {
         dispatch(setBreadCms([
@@ -114,28 +114,27 @@ function Pages() {
                 <Box component="form" onSubmit={handleSubmit}
                     noValidate
 
-                    sx={{
-                        '& .MuiTextField-root': { m: 1, width: '25ch' },
-                    }}
+                    sx={{ m : 2}}
 
                 >
-
-                    <Grid container spacing={2} >
-                        <Grid item xs={12} sm={12} md={4} >
+                    <Grid container spacing={2} columns={12} >
+                        <Grid item xs={12} sm={12} md={6} lg={6} >
                             <TextField
+                                fullWidth
                                 required
                                 name="scholar_id"
                                 label="Google-Scholar-ID"
                             />
                         </Grid>
-                        <Grid item xs={12} sm={12} md={4}>
+                        <Grid item xs={12} sm={12} md={6} lg={6}>
                             <TextField
+                                fullWidth
                                 required
                                 name="name"
                                 label="ชื่อที่แสดงบน Google-Scholar"
                             />
                         </Grid>
-                        <Grid item xs={12} sm={12} md={12}  >
+                        <Grid item xs={12} sm={12} md={12} lg={12} >
                             <FormControl fullWidth >
                                 <InputLabel id="demo-simple-select-label">เลือกมหาวิทยาลัย</InputLabel>
                                 <Select
