@@ -27,10 +27,15 @@ function Copyright() {
 let theme = createTheme({
   palette: {
     primary: {
-      light: '#63ccff',
+      light: '#af52bf',
       main: '#9c27b0',
-      dark: '#006db3',
+      dark: '#6d1b7b',
     },
+    secondary :{
+      light: '#f73378',
+      main: '#f50057',
+      dark: '#ab003c',
+    }
   },
   typography: {
     fontFamily: "'Mitr', sans-serif;",

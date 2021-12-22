@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Paperbase from '../../../template/Paperbase'
-import { AppBar, Avatar, Button, Container, Grid, Toolbar, Typography } from '@mui/material'
+import { AppBar, Avatar, Container, Grid, Link, Toolbar, Typography } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { setBreadCms } from './../../../store/reducer/Breadcrumbs'
 import { setTitle } from './../../../store/reducer/TitleHeader'
@@ -45,8 +45,19 @@ function Pages() {
                 );
             }
         },
-        { field: 'fullname', headerName: 'Name Google Scholar', width: 350 },
-        { field: 'scholar_id', headerName: 'Code GSR', width: 150 },
+        {
+            field: "fullname",
+            headerName: "Name Google Schola",
+            width: 350,
+            renderCell: (params) => {
+
+                return (
+                    <Link component="button" onClick={() => window.open(`https://scholar.google.com/citations?hl=th&authuser=1&user=${params.row.scholar_id}`, "_blank")} >
+                        <Typography >{params.row.fullname}</Typography>
+                    </Link>
+                );
+            }
+        },
         { field: 'university_name', headerName: 'From', width: 150 },
         { field: 'h_index', headerName: 'Hindex', width: 150 },
         { field: 'iten_index', headerName: 'I10index', width: 150 },
@@ -96,9 +107,7 @@ function Pages() {
                             <Typography >{title}</Typography>
                         </Grid>
                         <Grid item>
-                            <Button onClick={() => { window.open(`${systemConfig.API}/export/all846215`, "_blank") }} variant="contained" sx={{ mr: 1 }}>
-                                Export Execl
-                            </Button>
+
                         </Grid>
                     </Grid>
                 </Toolbar>

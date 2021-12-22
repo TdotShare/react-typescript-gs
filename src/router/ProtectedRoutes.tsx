@@ -1,4 +1,4 @@
-import { useHistory, Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 
 import Dashboard from '../screen/admin/dashboard/Dashboard'
 import User from '../screen/admin/user/User'
@@ -7,7 +7,7 @@ import Gsindex from '../screen/admin/gsindex/Gsindex'
 import University from '../screen/admin/university/University'
 
 
-import { routerPathProtected } from './RouterPath'
+import { routerPathProtected, routerPathPublic } from './RouterPath'
 import { RootState } from './../store/ConfigureStore'
 import { useSelector } from 'react-redux'
 import UniversityCreate from '../screen/admin/university/UniversityCreate'
@@ -15,12 +15,11 @@ import UniversityCreate from '../screen/admin/university/UniversityCreate'
 
 function ProtectedRoutes() {
 
-    const history = useHistory()
 
     const authen = useSelector((state: RootState) => state.user.auth)
 
     if (!authen) {
-        history.replace(`/login`)
+        return <Redirect to={routerPathPublic.Login} />
     }
 
     return (
