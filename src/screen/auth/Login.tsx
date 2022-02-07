@@ -29,7 +29,19 @@ const theme = createTheme({
   palette: exportedColor,
   typography: {
     fontFamily: "'Mitr', sans-serif;",
-  }
+  },
+  palette: {
+    primary: {
+      light: '#af52bf',
+      main: '#9c27b0',
+      dark: '#6d1b7b',
+    },
+    secondary :{
+      light: '#f73378',
+      main: '#f50057',
+      dark: '#ab003c',
+    }
+  },
 });
 
 export default function Login() {

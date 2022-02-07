@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Paperbase from '../../../template/Paperbase'
-import { AppBar, Avatar, Button, Container, Grid, Toolbar, Typography } from '@mui/material'
+import { AppBar, Avatar, Button, Container, Grid, Toolbar, Typography, Link } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { setBreadCms } from './../../../store/reducer/Breadcrumbs'
 import { setTitle } from './../../../store/reducer/TitleHeader'
@@ -27,6 +27,32 @@ function Pages() {
 
     const columns: GridColDef[] = [
         {
+            field: "actions",
+            headerName: "Actions",
+            sortable: false,
+            width: 350,
+            renderCell: (params) => {
+                return (
+                    <>
+                        <Button
+                            onClick={() => actionUpdateProfile(params.row)}
+                            variant="contained"
+                        >
+                            Update Index
+                        </Button>
+                        <div style={{ margin: 5 }}></div>
+                        <Button
+                            onClick={() => actionDeleteProfile(params.row.id)}
+                            variant="contained"
+                        >
+                            Delete
+                        </Button>
+                    </>
+
+                );
+            }
+        },
+        {
             field: "image_profile",
             headerName: "รูปภาพประจำตัว",
             sortable: false,
@@ -40,42 +66,24 @@ function Pages() {
                 );
             }
         },
-        { field: 'name', headerName: 'ชื่อบนกูเกิลสกอล่า', width: 350 },
+        {
+            field: "name",
+            headerName: "ชื่อบนกูเกิลสกอล่า",
+            width: 350,
+            renderCell: (params) => {
+
+                const data: GSprofile = params.row
+
+                return (
+                    <Link component="button" onClick={() => window.open(`https://scholar.google.com/citations?hl=th&authuser=1&user=${data.scholar_id}`, "_blank")} >
+                        <Typography >{data.name}</Typography>
+                    </Link>
+                );
+            }
+        },
         { field: 'scholar_id', headerName: 'Code GS', width: 150 },
         { field: 'university_name', headerName: 'จากมหาวิทยาลัย', width: 100 },
         { field: 'update_at', headerName: 'อัปเดตล่าสุดเมื่อ', width: 200 },
-        {
-            field: "update_index",
-            headerName: "",
-            sortable: false,
-            width: 130,
-            renderCell: (params) => {
-                return (
-                    <Button
-                        onClick={() => actionUpdateProfile(params.row)}
-                        variant="contained"
-                    >
-                        Update Index
-                    </Button>
-                );
-            }
-        },
-        {
-            field: "delete",
-            headerName: "",
-            sortable: false,
-            width: 130,
-            renderCell: (params) => {
-                return (
-                    <Button
-                        onClick={() => actionDeleteProfile(params.row.id)}
-                        variant="contained"
-                    >
-                        Delete
-                    </Button>
-                );
-            }
-        },
     ];
 
     const dispatch = useDispatch()
