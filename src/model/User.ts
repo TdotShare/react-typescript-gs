@@ -16,5 +16,6 @@ interface User {
 export type TAPIdata = {
     bypass: boolean,
     data: User,
-    status : string
+    status : string,
+    message : string
 }

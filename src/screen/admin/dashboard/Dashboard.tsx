@@ -8,7 +8,7 @@ import { routerPathProtected } from '../../../router/RouterPath'
 import axios from 'axios'
 
 import { systemConfig } from '../../../config/System'
-import { useSelector , useDispatch} from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { RootState } from './../../../store/ConfigureStore'
 
 import { setLoginfail, deleteUser } from './../../../store/reducer/User'
@@ -27,15 +27,15 @@ function Pages() {
 
     const [title] = useState<string>("ภาพรวมระบบ")
 
-    const [refCount , setRefCount] = useState<number>(0)
-    const [profileCount , setProfileCount] = useState<number>(0)
+    const [refCount, setRefCount] = useState<number>(0)
+    const [profileCount, setProfileCount] = useState<number>(0)
 
     const user = useSelector((state: RootState) => state.user.data)
 
-    const actionGetDashboard = async () =>{
+    const actionGetDashboard = async () => {
+
+
         const data = await axios.get<any>(`${systemConfig.API}/dashboard`, { headers: { 'Authorization': `Bearer ${user.token}` } });
-
-
 
         if (data.data.bypass) {
             setProfileCount(data.data.data.profile_count)
@@ -46,6 +46,8 @@ function Pages() {
             dispatch(setLoginfail())
             dispatch(deleteUser())
         }
+
+
     }
 
     useEffect(() => {

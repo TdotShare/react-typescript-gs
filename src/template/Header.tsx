@@ -14,10 +14,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import { Breadcrumbs } from '@mui/material';
-import { routerPathPublic } from '../router/RouterPath';
+//import { routerPathPublic } from '../router/RouterPath';
 import {
   Link,
-  useHistory
 } from "react-router-dom";
 import { RootState } from './../store/ConfigureStore'
 import { useSelector, useDispatch } from 'react-redux'
@@ -31,8 +30,6 @@ interface HeaderProps {
 
 export default function Header(props: HeaderProps) {
 
-  const history = useHistory()
-
   const breadcrumbs = useSelector((state: RootState) => state.breadcrumbs.item)
   const titleheader = useSelector((state: RootState) => state.titleheader.value)
 
@@ -43,7 +40,7 @@ export default function Header(props: HeaderProps) {
   const actionLogout = () => {
     dispatch(setLoginfail())
     dispatch(deleteUser())
-    history.replace(routerPathPublic.Login)
+    window.location.href = `https://mis-ird.rmuti.ac.th/sso/auth/logout?url=https://mis-ird.rmuti.ac.th/gs/admin/`
   }
 
   return (
