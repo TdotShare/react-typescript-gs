@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Paperbase from '../../../template/Paperbase'
 import { AppBar, Avatar, Button, Container, Grid, Toolbar, Typography, Link } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { setBreadCms } from './../../../store/reducer/Breadcrumbs'
@@ -17,20 +16,19 @@ import swal from "../../../utils/swal"
 
 function User() {
 
-    return (
-        <Paperbase children={Pages()} />
-    )
-}
-
-
-function Pages() {
-
     const columns: GridColDef[] = [
+        {
+            flex : 1 ,
+            field : "FIELD_NOT_EXSITS",
+            headerName : "",
+            width: 130,
+            valueGetter : (params) => params.api.getRowIndex(params.row.id) + 1 ,
+        },
         {
             field: "actions",
             headerName: "Actions",
             sortable: false,
-            width: 350,
+            width: 250,
             renderCell: (params) => {
                 return (
                     <>
@@ -135,6 +133,7 @@ function Pages() {
                 i10index2016: parseInt(table.rows[3].cells[2].innerHTML),
             }
 
+            //console.log(formatData)
 
             axios.post<any>(`${systemConfig.API}/gsprofile/updateindex`,
                 formatData

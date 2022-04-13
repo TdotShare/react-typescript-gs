@@ -3,7 +3,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 //import TextField from '@mui/material/TextField';
-import Link from '@mui/material/Link';
+//import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
@@ -30,18 +30,6 @@ const theme = createTheme({
   typography: {
     fontFamily: "'Mitr', sans-serif;",
   },
-  palette: {
-    primary: {
-      light: '#af52bf',
-      main: '#9c27b0',
-      dark: '#6d1b7b',
-    },
-    secondary :{
-      light: '#f73378',
-      main: '#f50057',
-      dark: '#ab003c',
-    }
-  },
 });
 
 export default function Login() {
@@ -52,7 +40,8 @@ export default function Login() {
 
   const actionLoginRmuti = async () => {
 
-    const data = await axios.get<TAPIdata>(`${systemConfig.API}/auth/login_rmuti`);
+    //const data = await axios.get<TAPIdata>(`${systemConfig.API}/auth/login_rmuti`);
+    const data = await axios.get<TAPIdata>(`${systemConfig.API}/auth/login_get_rmuti`);
 
     if (data.data.bypass) {
 
@@ -67,6 +56,11 @@ export default function Login() {
       history.replace(routerPathProtected.Dashboard)
 
     }else{
+
+      if(data.data.status === 'login'){
+        window.location.href = 'https://mis-ird.rmuti.ac.th/sso/auth/login?url=https://mis-ird.rmuti.ac.th/gs/admin/'
+      }
+
       if(data.data.message !== ""){
         swal.actionInfo(data.data.message)
       }
@@ -76,7 +70,7 @@ export default function Login() {
 
   React.useEffect(() => {
 
-    actionLoginRmuti()
+    //actionLoginRmuti()
 
     // eslint-disable-next-line
   }, [])
@@ -103,9 +97,8 @@ export default function Login() {
           <Typography component="h1" variant="h6">
             สถาบันวิจัยและพัฒนา มทร.อีสาน
           </Typography>
-
-          <Link href="https://mis-ird.rmuti.ac.th/sso/auth/login?url=https://mis-ird.rmuti.ac.th/gs/admin/" >
             <Button
+              onClick={() => actionLoginRmuti()}
               type="submit"
               fullWidth
               variant="contained"
@@ -113,7 +106,6 @@ export default function Login() {
             >
               LOGIN RMUTI
             </Button>
-          </Link>
         </Box>
       </Container>
     </ThemeProvider>

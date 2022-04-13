@@ -1,6 +1,5 @@
 import { Alert, AppBar, Container, Grid, Toolbar, Typography } from '@mui/material'
 import React, { useState, useEffect } from 'react'
-import Paperbase from '../../../template/Paperbase'
 
 import { setBreadCms } from './../../../store/reducer/Breadcrumbs'
 import { setTitle } from './../../../store/reducer/TitleHeader'
@@ -14,14 +13,6 @@ import { RootState } from './../../../store/ConfigureStore'
 import { setLoginfail, deleteUser } from './../../../store/reducer/User'
 
 function Dashboard() {
-
-    return (
-        <Paperbase children={Pages()} />
-    )
-}
-
-
-function Pages() {
 
     const dispatch = useDispatch()
 

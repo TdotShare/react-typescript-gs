@@ -21,6 +21,7 @@ import {
 import { RootState } from './../store/ConfigureStore'
 import { useSelector, useDispatch } from 'react-redux'
 import { setLoginfail, deleteUser } from './../store/reducer/User'
+//import exportedSwal from '../utils/swal';
 
 const lightColor = 'rgba(255, 255, 255, 0.7)';
 
@@ -40,6 +41,8 @@ export default function Header(props: HeaderProps) {
   const actionLogout = () => {
     dispatch(setLoginfail())
     dispatch(deleteUser())
+    
+    //exportedSwal.actionSuccess("ทำการออกจากระบบเรียบร้อย กรุณารอสักครู่ ระบบจะพาคุณไปยังหน้า Login")
     window.location.href = `https://mis-ird.rmuti.ac.th/sso/auth/logout?url=https://mis-ird.rmuti.ac.th/gs/admin/`
   }
 

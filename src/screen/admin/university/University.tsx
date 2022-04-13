@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Paperbase from '../../../template/Paperbase'
 import { AppBar, Button, Container, Grid, Toolbar, Typography } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { setBreadCms } from './../../../store/reducer/Breadcrumbs'
@@ -15,15 +14,10 @@ import swal from "../../../utils/swal"
 import { useHistory } from 'react-router';
 
 
+
+
+
 function University() {
-
-    return (
-        <Paperbase children={Pages()} />
-    )
-}
-
-
-function Pages() {
 
 
     const history = useHistory()

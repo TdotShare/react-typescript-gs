@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Paperbase from '../../../template/Paperbase'
 import { AppBar, Button, Container, Grid, TextField, Toolbar, Typography } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { setBreadCms } from './../../../store/reducer/Breadcrumbs'
@@ -15,15 +14,8 @@ import swal from "../../../utils/swal"
 import axios from 'axios'
 import { systemConfig } from '../../../config/System'
 
+
 function UniversityCreate() {
-
-    return (
-        <Paperbase children={Pages()} />
-    )
-}
-
-
-function Pages() {
 
     const dispatch = useDispatch()
 

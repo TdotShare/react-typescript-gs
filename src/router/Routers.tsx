@@ -5,17 +5,19 @@ import { routerPathProtected, routerPathPublic } from './RouterPath';
 
 import Login from '../screen/auth/Login'
 import { systemConfig } from '../config/System';
+import Paperbase from '../template/Paperbase';
 
 
 
 function Routers() {
     return (
         <Router basename={systemConfig.BaseRouter}>
-            <Switch>
-                <Route exact path={`/`} component={Login} />
-                <Route exact path={`${routerPathPublic.Login}`} component={Login} />
-                <Route path={Object.values(routerPathProtected)} component={ProtectedRoutes} />
-            </Switch>
+            <Route exact path={`${routerPathPublic.Login}`} component={Login} />
+            <Route path={`/`} component={() => <Paperbase children={
+                <Switch>
+                    <Route path={Object.values(routerPathProtected)} component={ProtectedRoutes} />
+                </Switch>
+            } />} ></Route>
         </Router>
     )
 }

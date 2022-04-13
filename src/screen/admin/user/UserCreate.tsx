@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Paperbase from '../../../template/Paperbase'
 import { AppBar, Box, Button, Container, FormControl, Grid, InputLabel, MenuItem, Select, TextField, Toolbar, Typography, SelectChangeEvent } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { setBreadCms } from './../../../store/reducer/Breadcrumbs'
@@ -14,15 +13,9 @@ import axios from 'axios'
 import { systemConfig } from '../../../config/System'
 import { GUniversity, TAPIdata } from '../../../model/GUniversity'
 
+
+
 function UserCreate() {
-
-    return (
-        <Paperbase children={Pages()} />
-    )
-}
-
-
-function Pages() {
 
     const dispatch = useDispatch()
 

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Paperbase from '../../../template/Paperbase'
 import { AppBar, Avatar, Container, Grid, Link, Toolbar, Typography } from '@mui/material'
 import { useDispatch } from 'react-redux'
 import { setBreadCms } from './../../../store/reducer/Breadcrumbs'
@@ -12,13 +11,6 @@ import { useSelector } from 'react-redux'
 import { RootState } from './../../../store/ConfigureStore'
 import { DataGrid, GridColDef, GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid'
 
-function Gsindex() {
-
-    return (
-        <Paperbase children={Pages()} />
-    )
-}
-
 function CustomToolbar() {
     return (
         <GridToolbarContainer>
@@ -28,9 +20,16 @@ function CustomToolbar() {
 }
 
 
-function Pages() {
+function Gsindex() {
 
     const columns: GridColDef[] = [
+        {
+            flex : 1 ,
+            field : "FIELD_NOT_EXSITS",
+            headerName : "",
+            width: 130,
+            valueGetter : (params) => params.api.getRowIndex(params.row.id) + 1 ,
+        },
         {
             field: "image_profile",
             headerName: "รูปภาพประจำตัว",
@@ -62,11 +61,12 @@ function Pages() {
         { field: 'h_index', headerName: 'Hindex', width: 150 },
         { field: 'iten_index', headerName: 'I10index', width: 150 },
         { field: 'reference', headerName: 'Reference', width: 150 },
-        { field: 'h_index2016', headerName: 'Hindex2016', width: 150 },
-        { field: 'iten_index2016', headerName: 'I10index2016', width: 150 },
-        { field: 'reference2016', headerName: 'Reference2016', width: 150 },
         { field: 'update_at', headerName: 'อัปเดตล่าสุดเมื่อ', width: 200 },
     ];
+
+    // { field: 'h_index2016', headerName: 'Hindex2016', width: 150 },
+    // { field: 'iten_index2016', headerName: 'I10index2016', width: 150 },
+    // { field: 'reference2016', headerName: 'Reference2016', width: 150 },
 
     const dispatch = useDispatch()
 
