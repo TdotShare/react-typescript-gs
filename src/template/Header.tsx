@@ -43,8 +43,8 @@ export default function Header(props: HeaderProps) {
     dispatch(setLoginfail())
     dispatch(deleteUser())
     
-    exportedSwal.actionSuccess("ทำการออกจากระบบเรียบร้อย กรุณารอสักครู่ ระบบจะพาคุณไปยังหน้า Login")
-    //window.location.href = `https://mis-ird.rmuti.ac.th/sso/auth/logout?url=https://mis-ird.rmuti.ac.th/gs/admin/`
+    //exportedSwal.actionSuccess("ทำการออกจากระบบเรียบร้อย กรุณารอสักครู่ ระบบจะพาคุณไปยังหน้า Login")
+    window.location.href = `https://mis-ird.rmuti.ac.th/sso/auth/logout?url=https://mis-ird.rmuti.ac.th/gs/`
   }
 
   return (
